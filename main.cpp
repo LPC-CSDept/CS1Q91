@@ -1,12 +1,18 @@
-#include "main.hpp"
+#include "Q91.hpp"
+
 int main()
 {
-	// string txt = "AAAAABBBBDDDDEEZ";
-	string txt;
-	char letter;
+        int numEmp, cnt;
+        Employee emp[SIZE];
+        string dname;
 
-	makestring(txt);
-	cout << txt << endl;
-	letter = leastused(txt);
-	cout << letter << endl;
+        numEmp = makeEmpRecord(emp);
+        cout << "There are " << numEmp << " employees in the structure array. \n\n";
+        printEmp(emp, numEmp);
+
+        dname = "HR";
+        cout << "************************************************************************************************\n";
+        cnt = findEmp(emp, numEmp, dname);
+        cout << "Total Employess found : " << cnt << endl;
+        cout << "************************************************************************************************\n";
 }
