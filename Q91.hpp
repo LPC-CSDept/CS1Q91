@@ -1,3 +1,5 @@
+#ifndef Q91
+#define Q91
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -26,3 +28,4 @@ void printEmp(Employee emp[], int N, int i);
 int findEmp(Employee[], int, string);
 
 const int SIZE = 100;
+#endif
