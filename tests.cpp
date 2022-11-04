@@ -2,83 +2,31 @@
 #define CATCH_CONFIG_MAIN // defines main() automatically
 #include <iostream>
 #include "catch.hpp"
-#include "main.hpp"
+#include "Q91.hpp"
 // tests for exercise 1
 
-TEST_CASE("Ex1 leastused() ", "[example]")
+TEST_CASE("Ex1 makeEmpRecord() ", "[example]")
 {
-	char ret;
-	string str;
+	int numEmp, cnt;
+	Employee emp[SIZE];
+	string dname;
 
-	str = "AAAAABBBBDDDDEEZ";
-	ret = leastused(str);
-	cout << "test string is " << str << "\tYour return value is: " << ret << endl;
+	numEmp = makeEmpRecord(emp);
+	cout << "There are " << numEmp << " employees in the structure array. \n\n";
+	INFO("The number of Employess shoud be 10");
+	REQUIRE(numEmp == 10);
+	INFO("Print the last Employee");
+	printEmp(emp, numEmp, 9);
 
-	INFO("The result should  Z\n");
-	REQUIRE(ret == 'Z');
-	cout << "--------------------------------------------------\n";
+	dname = "HR";
+	cnt = findEmp(emp, numEmp, dname);
+	cout << "Total Employess found : " << cnt << endl;
+	INFO("The number of Employess in " << dname << " 2");
+	REQUIRE(cnt == 2);
 
-	str = "AAABBBC";
-	ret = leastused(str);
-	cout << "test string is " << str << "\tYour return value is: " << ret << endl;
-
-	INFO("The result should  C\n");
-	REQUIRE(ret == 'C');
-	cout << "--------------------------------------------------\n";
-
-	str = "CAAA";
-	ret = leastused(str);
-	cout << "test string is " << str << "\tYour return value is: " << ret << endl;
-
-	INFO("The result should  C\n");
-	REQUIRE(ret == 'C');
-	cout << "--------------------------------------------------\n";
-}
-
-char check(string txt)
-{
-	int seen[26] = {0};
-	int cnt, i, idx, mincnt, minidx;
-	char alpha;
-
-	alpha = 'A';
-	for (i = 0; i < 26; i++)
-	{
-		cnt = count(txt.begin(), txt.end(), alpha);
-		alpha += 1;
-		seen[i] = cnt;
-	}
-	// for (int i = 0; i < 26; i++)
-	// {
-	// 	cout << seen[i] << "\t";
-	// }
-	// cout << endl;
-	for (i = 0; i < 26; i++)
-	{
-		if (seen[i] == 0)
-			continue;
-		if ((i == 0) or (mincnt > seen[i]))
-		{
-			mincnt = seen[i];
-			minidx = i;
-		}
-	}
-	alpha = 'A' + minidx;
-	return alpha;
-}
-
-TEST_CASE("Ex2 leastused() ", "[example]")
-{
-	string str;
-	char ret, checkval;
-
-	makestring(str);
-	// str = "AAABBBC";
-	ret = leastused(str);
-	cout << "test email string is " << str << "\tYour return value is: " << ret << endl;
-	checkval = check(str);
-
-	INFO("The result should be " << checkval);
-	REQUIRE(ret == checkval);
-	cout << "--------------------------------------------------\n";
+	dname = "Computer";
+	cnt = findEmp(emp, numEmp, dname);
+	cout << "Total Employess found : " << cnt << endl;
+	INFO("The number of Employess in " << dname << " 4");
+	REQUIRE(cnt == 4);
 }
